@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>优定制 · 小程序首页改版设计稿</title>
+<link href="https://fonts.googleapis.cn/css2?family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#eeefec;--ink:#16201c;--ink-2:#5c6862;--forest:#2d4a3a;--hair:rgba(22,32,28,.14)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);line-height:1.85;font-size:15px;
+  font-family:-apple-system,"PingFang SC","Helvetica Neue",Arial,sans-serif}
+.serif{font-family:"Songti SC","Noto Serif SC","STSong",serif;font-weight:400}
+.en{font-family:"Cormorant Garamond","Times New Roman",serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 26px 90px}
+header{padding:72px 0 44px}
+header .k{font-family:"Cormorant Garamond",serif;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--forest)}
+header h1{font-family:"Songti SC","Noto Serif SC",serif;font-weight:400;font-size:clamp(28px,4.6vw,42px);
+  line-height:1.4;margin:16px 0 18px}
+header p{color:var(--ink-2);font-size:14.5px;max-width:40em}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:20px}
+@media(max-width:760px){.two{grid-template-columns:1fr;gap:44px}}
+.opt{display:flex;flex-direction:column}
+.opt .shot{border:1px solid var(--hair);overflow:hidden;background:#ddd;margin-bottom:20px}
+.opt .shot img{display:block;width:100%}
+.opt .tag{font-family:"Cormorant Garamond",serif;font-size:12px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--forest);margin-bottom:9px}
+.opt h2{font-family:"Songti SC","Noto Serif SC",serif;font-weight:400;font-size:24px;margin-bottom:11px}
+.opt .d{font-size:13.5px;color:var(--ink-2);line-height:2;margin-bottom:15px}
+.opt ul{list-style:none;font-size:13px;color:var(--ink-2);margin-bottom:22px}
+.opt li{padding-left:15px;position:relative;line-height:2}
+.opt li::before{content:'';position:absolute;left:0;top:14px;width:6px;height:1px;background:var(--forest)}
+.opt .go{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:11px;height:50px;
+  background:var(--forest);color:var(--paper);font-size:13.5px;letter-spacing:.18em;transition:.35s}
+.opt .go:hover{opacity:.87}
+.sec{margin-top:62px;padding-top:34px;border-top:1px solid var(--hair)}
+.sec h3{font-family:"Songti SC","Noto Serif SC",serif;font-weight:400;font-size:21px;margin-bottom:14px}
+.sec p{font-size:14px;color:var(--ink-2);max-width:46em;margin-bottom:12px}
+.sec p b{color:var(--ink);font-weight:600}
+.note{background:#e6e8e4;border-left:3px solid var(--forest);padding:20px 24px;margin-top:18px;max-width:46em}
+.note p{margin-bottom:9px;font-size:13.5px}
+.note p:last-child{margin-bottom:0}
+footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--hair);font-size:12px;color:#8b938f}
+</style></head><body>
+<div class="wrap">
+<header>
+  <div class="k">U-Design &nbsp;Homepage Redesign</div>
+  <h1>优定制 · 小程序首页改版</h1>
+  <p>下面都是手机端真实可滚动的页面，不是静态图。第一个是按小程序结构做的完整首页，带开屏动画、搜索和底部导航；后面两个是最初探索视觉方向时的版本，更像品牌官网，留作参考。手机上打开效果最准。</p>
+</header>
+
+<div class="two">
+<div class="opt" style="grid-column:1/-1;margin-bottom:8px">
+  <div class="shot"><img src="https://uuxoc.uuxlink.com/customize/openclaw/gz/utrip-prev-c.jpg" alt="开屏与小程序首页"></div>
+  <div class="tag">Option C &nbsp;&middot;&nbsp; 推荐</div>
+  <h2>开屏 + 小程序首页</h2>
+  <div class="d">打开先是一屏整幅摄影，品牌名和标语分层浮现，两秒八之后自动让开，进入首页。首页按小程序该有的样子做：顶部搜索、主视觉横滑、快捷入口、精选清单、主题、顾问手记，底部五个导航常驻，中间是凸起的 AI 行程师。视觉语言沿用下面方案 B 那套。</div>
+  <ul>
+    <li>开屏可以点任意处跳过，页面右下角有「重看开屏」方便反复看（上线时删掉）</li>
+    <li>主视觉、清单、手记都能横滑，和真机手感一致</li>
+    <li>信息量够日常用，但没有回到十个彩色分类格子那种堆法</li>
+  </ul>
+  <a class="go" href="utrip-design-c.html">看完整页面</a>
+</div>
+
+  <div class="opt">
+    <div class="shot"><img src="https://uuxoc.uuxlink.com/customize/openclaw/gz/utrip-prev-a.jpg" alt="方案 A 首屏"></div>
+    <div class="tag">Option A &nbsp;&middot;&nbsp; 视觉方向</div>
+    <h2>画廊</h2>
+    <div class="d">整页深色，摄影占满整屏，文字压在图上。最接近 Aman、Belmond 这类高端酒店与旅行品牌的官网语言。</div>
+    <ul>
+      <li>一个目的地一整屏，像翻一本摄影集</li>
+      <li>信息给得克制，先让人被画面打动</li>
+      <li>没有底部导航和搜索，更像品牌官网而不是小程序</li>
+    </ul>
+    <a class="go" href="utrip-design-a.html">看完整页面</a>
+  </div>
+
+  <div class="opt">
+    <div class="shot"><img src="https://uuxoc.uuxlink.com/customize/openclaw/gz/utrip-prev-b.jpg" alt="方案 B 首屏"></div>
+    <div class="tag">Option B &nbsp;&middot;&nbsp; 视觉方向</div>
+    <h2>杂志</h2>
+    <div class="d">浅色纸感，墨绿点缀，编辑式排版。接近 Condé Nast Traveller、Black Tomato 这类旅行杂志与定制社的网页。</div>
+    <ul>
+      <li>目录式清单，一眼看到季节、天数与价格</li>
+      <li>装得下更多内容，日常运营更好维护</li>
+      <li>方案 C 用的就是这套配色、字体与排版语言</li>
+    </ul>
+    <a class="go" href="utrip-design-b.html">看完整页面</a>
+  </div>
+</div>
+
+<div class="sec">
+  <h3>我的建议</h3>
+  <p><b>按方案 C 落地。</b>A 和 B 是先把视觉语言探到位，但它们没有底部导航、没有搜索，整页像一张品牌落地页，客人第二次打开会不知道该点哪里。C 把这套语言装回小程序该有的骨架里：该有的入口一个不少，但不回到搜索框加十个彩色格子加轮播加瀑布流那种堆法。</p>
+  <p>A 那种一屏一张图的沉浸感仍然有用，建议留给<b>单个目的地的详情页</b>和<b>对外的品牌页</b>。三个页面共用同一套字体、颜色与间距规则，混着用不会打架。</p>
+
+
+
+
+<div class="sec" style="border-top:2px solid var(--forest);padding-top:30px">
+  <h3 style="font-size:24px">餐饮小程序风 · 首页 / 目的地 / 我的</h3>
+  <p>按唐美芳给的三张参考（喜茶、马黛茶、咖啡 App）重做的三个页面。
+  参考图的共同结构是：<b>顶部整块品牌氛围区 + 双主入口 + 会员卡条 + 营销三连 + 分类横滑</b>，
+  暖色调、大圆角、金棕描线图标。</p>
+  <p><b>氛围感来自</b>：整块品牌视觉而不是列表开场、奶油配深棕、竖排中文主张、柔和投影与大圆角。</p>
+  <p><b>闭环来自</b>：双主入口把两种消费路径说死（找现成的 / 从零定制，对应自取与外送），
+  会员卡条给等级与券、营销三连管拉新与留存（邀友、积分、储值），
+  「我的」页把订单四状态与定制咨询两条线并列，客人知道自己每一单走到哪。</p>
+  <p style="margin-top:14px"><a class="go" style="display:inline-flex;padding:0 24px" href="utrip-design-cafe.html">打开这一版</a></p>
+</div>
+
+<div class="sec">
+  <h3>首页另一种可能 · 风味</h3>
+  <p>把选目的地做成<b>品鉴</b>而不是逛商品。精品咖啡的做法是把感受拆成能辨认的维度（酸度、醇厚度、余韵、产区、处理法），
+  让人从「我想喝咖啡」变成「我要一支果酸明亮、茉莉尾韵的耶加雪菲」。旅行完全可以这么做。</p>
+  <p>客人现在只能说「我想去欧洲」，但他真正想要的是<b>安静、荒野、能看到光、不用天天换酒店</b>。
+  首页因此不再从「去哪」开始，而是先问「这一趟你想要什么味道」，给三组对立的选择：
+  安静↔热闹、荒野↔人文、留白↔走满。选完，目的地按你的口味重新排列。</p>
+  <p>每个目的地做成一张<b>风味卡</b>：编号、最佳季节、那句话、四个风味词，
+  下面是五个维度的刻度条（野 / 人 / 味 / 缓 / 奢），再下面是建议天数、日均起价、直飞时长。
+  像咖啡豆袋上的产区标签和杯测表。</p>
+  <p style="margin-top:14px"><a class="go" style="display:inline-flex;padding:0 24px" href="utrip-design-tasting.html">打开风味版</a></p>
+</div>
+
+<div class="sec">
+  <h3>目的地页 · 三种版面</h3>
+  <p>同一套视觉语言下，目的地页可以有三种完全不同的组织方式。一个页面里可切换对比，顶部三个按钮。</p>
+  <p><b>索引</b>　按大洲分章，一行一个目的地（小图 + 名字 + 那句话 + 城市 + 日均起价）。像旅行指南的目录，一屏能看五个，目的地增加到几十个也不会乱。</p>
+  <p><b>一屏一国</b>　整幅大图压字，一次只看一个。沉浸感最强，但八个目的地要滚五千多像素，目的地多了会很长。</p>
+  <p><b>错落</b>　大小卡片混排，大洲作分隔。介于前两者之间。</p>
+  <p style="margin-top:14px"><a class="go" style="display:inline-flex;padding:0 24px" href="utrip-design-dest.html">打开对比页</a></p>
+</div>
+
+<div class="sec">
+  <h3>这次改动了什么</h3>
+  <p><b>字体。</b>标题全部换成宋体，英文用 Cormorant Garamond。欧美高端旅行品牌几乎全部用衬线体做标题，这是高端感最大的一块来源，比任何配色和布局都管用。</p>
+  <p><b>配色。</b>刻意避开了现在这套米色加香槟金。那个组合是高端消费品类最容易撞车的配色，用的人太多反而显得模板化。A 用墨黑配骨白，B 用冷纸白配深墨绿，都不是暖米色系。</p>
+  <p><b>信息密度。</b>现在首页有搜索框、十个分类格子、卡片轮播、榜单、双列瀑布流。高端品牌的首页通常只做三件事：给一个主张、推几条线路、留一个联系方式。两个方案都按这个减法重做。</p>
+  <p><b>去掉了圆角。</b>整页没有一个圆角，所有分隔用一像素细线。圆角卡片堆叠是国内电商小程序的通用语言，也是最快让人觉得"这是个卖货的"的信号。</p>
+</div>
+
+<div class="sec">
+  <h3>有一件事比版面更要紧</h3>
+  <div class="note">
+    <p><b>图片素材撑不住高端定位，这是现在最大的短板。</b></p>
+    <p>我把产品库里的封面图逐张看过：十四张里只有四张能用。其余是大本钟配红绿灯、埃菲尔铁塔仰拍带漏光、瑞士街景里停着面包车和停车场黄线、还有一张是不知道哪里的铁架子。这些是游客随手拍，不是品牌图。</p>
+    <p>设计稿里的图是我从公司图库另外检索并逐张筛出来的，这才凑齐两个页面。<b>如果版面定下来要落地，图片需要单独立一件事去办</b>：要么按目的地重新采买一批专业旅拍，要么定一份选图标准让运营照着挑。版面再好，配上停车场照片也高端不起来。</p>
+  </div>
+</div>
+
+<footer>2026-09-24 · 设计稿为独立页面，不接系统数据，只呈现视觉效果 · 众信旅游 优定制</footer>
+</div></body></html>

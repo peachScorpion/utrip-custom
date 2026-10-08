@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.db
+*.db-journal
+.DS_Store
+*.db-shm
+*.db-wal
+
+# 数据库备份：*.db 匹配不到 utrip.db.bak-20260924-xxx 这种后缀，
+# 结果被一次 git add -A 整批提交进了仓库（4.5MB 二进制，还带真实业务数据）
+utrip.db.bak-*
+*.db.bak*

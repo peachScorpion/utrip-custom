@@ -1,0 +1,33 @@
+/* ===========================================================
+   优定制 · 首页改版设计稿 · 共用基底
+   配色刻意避开「米色 + 香槟金 + 深咖」那套组合：
+   那是目前系统在用的，也是高端消费品类最容易撞车、最显模板感的一组。
+   =========================================================== */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* 手机画布：桌面上居中成一台手机，手机上占满 */
+.stage{min-height:100dvh;display:flex;justify-content:center;align-items:flex-start}
+.phone{width:100%;max-width:430px;min-height:100dvh;position:relative;overflow:hidden}
+@media (min-width:900px){
+  .stage{padding:34px 0 54px}
+  .phone{border-radius:0;box-shadow:0 40px 120px rgba(0,0,0,.34)}
+}
+
+/* 进场：滚动到视口内才浮起。用 IntersectionObserver，不监听 scroll */
+.rise{opacity:0;transform:translateY(26px);transition:opacity 1.1s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1)}
+.rise.in{opacity:1;transform:none}
+.rise.d1{transition-delay:.09s}.rise.d2{transition-delay:.18s}.rise.d3{transition-delay:.27s}
+
+/* 缓慢推近：只给 hero 一张图，不是满页都在动 */
+@keyframes drift{from{transform:scale(1)}to{transform:scale(1.08)}}
+.drift{animation:drift 22s ease-out forwards}
+
+@media (prefers-reduced-motion:reduce){
+  .rise{opacity:1;transform:none;transition:none}
+  .drift{animation:none}
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}

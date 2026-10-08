@@ -1,0 +1,25 @@
+.rich{background:#fff;border-radius:8px;overflow:hidden}
+.rich .ql-toolbar.ql-snow{border:1px solid var(--oc-line,#eeebe4);border-bottom:0;border-radius:8px 8px 0 0;
+  background:var(--oc-head,#faf9f6);padding:7px 10px}
+.rich .ql-container.ql-snow{border:1px solid var(--oc-line,#eeebe4);border-radius:0 0 8px 8px;
+  font-family:inherit;font-size:13px}
+.rich .ql-editor{min-height:var(--minh,160px);line-height:1.9;color:var(--ink,#15141a);padding:14px 16px}
+.rich .ql-editor.ql-blank::before{color:var(--muted-2,#a9a396);font-style:normal;font-size:12.8px;left:16px}
+.rich .ql-editor h2{font-size:16px;font-weight:600;margin:14px 0 8px}
+.rich .ql-editor h3{font-size:14px;font-weight:600;margin:12px 0 6px}
+.rich .ql-editor p{margin:0 0 7px}
+.rich .ql-editor ul,.rich .ql-editor ol{padding-left:20px;margin:0 0 8px}
+.rich .ql-snow .ql-stroke{stroke:var(--muted,#7c7568)}
+.rich .ql-snow .ql-fill{fill:var(--muted,#7c7568)}
+.rich .ql-snow .ql-picker{color:var(--muted,#7c7568)}
+.rich .ql-snow.ql-toolbar button:hover .ql-stroke,
+.rich .ql-snow.ql-toolbar button.ql-active .ql-stroke{stroke:var(--accent,#8c6d3a)}
+.rich .ql-snow.ql-toolbar button.ql-active .ql-fill{fill:var(--accent,#8c6d3a)}
+
+.rich-view{font-size:12.8px;line-height:1.95;color:var(--ink-3,#363243)}
+.rich-view h2{font-size:15px;font-weight:600;margin:14px 0 7px}
+.rich-view h3{font-size:13.5px;font-weight:600;margin:12px 0 6px}
+.rich-view p{margin:0 0 7px}
+.rich-view ul,.rich-view ol{padding-left:20px;margin:0 0 8px}
+.rich-view blockquote{margin:8px 0;padding:8px 14px;background:var(--oc-head,#faf9f6);
+  border-left:3px solid var(--accent-3,#cfae74);color:var(--muted,#7c7568)}

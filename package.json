@@ -1,0 +1,26 @@
+{
+  "name": "utrip-custom",
+  "private": true,
+  "version": "0.1.0",
+  "description": "UTRIP 悠行定制 —— 定制旅游前后端一体（UOM/CSP/UBK/小程序）",
+  "scripts": {
+    "dev:server": "node server/index.js",
+    "dev:web": "vite --config web/vite.config.js",
+    "build": "vite build --config web/vite.config.js",
+    "start": "node server/index.js",
+    "seed": "node server/db/seed.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "quill": "^2.0.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-router-dom": "^7.18.4",
+    "vite": "^8.3.0"
+  }
+}

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>U-DESIGN 优定制 · 定制旅游一体化平台</title>
+<meta name="theme-color" content="#0e1311" />
+</head>
+<body><div id="root"></div><script type="module" src="/src/main.jsx"></script>
+<script>
+/* 白屏自愈：页面加载 8 秒后 #root 还是空的，基本只有一种情况 ——
+   浏览器缓存着一份旧 index.html，去要的 js 已经不是这一版了。
+   换个带参地址重载一次（只做一次，_r 防死循环），省得让人去按硬刷新。 */
+setTimeout(function () {
+  var r = document.getElementById('root');
+  if (!r || r.children.length || /[?&]_r=/.test(location.search)) return;
+  var s = location.search ? location.search + '&_r=' + Date.now() : '?_r=' + Date.now();
+  location.replace(location.pathname + s + location.hash);
+}, 8000);
+</script>
+</body>
+</html>

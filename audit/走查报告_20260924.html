@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>优定制 · 全链路走查报告（2026-09-24）</title>
+<style>
+:root{--ink:#10201c;--gold:#cfae74;--gold2:#e0c894;--paper:#f9f7f2;--line:#e6e0d4;--muted:#7d8a86;--red:#b4443a;--amber:#b8842a;--green:#3f7a5e}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:#1d2b27;font:15px/1.8 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px 90px}
+header{background:var(--ink);color:#fff;padding:52px 0 44px;margin-bottom:0}
+header .wrap{padding-bottom:0}
+.tk{font-size:11px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase}
+h1{font-family:Georgia,"Songti SC",serif;font-weight:400;font-size:clamp(25px,4.4vw,37px);margin:13px 0 12px;line-height:1.25}
+header p{color:#9fada8;margin:0;font-size:14px;max-width:660px}
+.kpi{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}
+.kpi span{font-size:12px;padding:6px 13px;border:1px solid rgba(255,255,255,.18);border-radius:999px;color:#c8d2ce}
+h2{font-family:Georgia,"Songti SC",serif;font-weight:400;font-size:25px;margin:52px 0 6px;padding-top:26px;border-top:1px solid var(--line)}
+h2 .n{color:var(--gold);font-size:14px;letter-spacing:.14em;display:block;margin-bottom:5px;font-family:-apple-system,sans-serif}
+h3{font-size:16.5px;margin:32px 0 10px;font-weight:600}
+p{margin:11px 0}
+.lead{font-size:15.5px;color:#31423d;background:#fff;border-left:3px solid var(--gold);padding:15px 19px;margin:20px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px;background:#fff}
+th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:#f2eee4;font-weight:600;font-size:12.5px;letter-spacing:.03em}
+td code,p code,li code{background:#eef2f0;padding:1px 5px;border-radius:3px;font-size:12.5px;font-family:ui-monospace,Menlo,monospace}
+.iss{background:#fff;border:1px solid var(--line);border-left:4px solid var(--muted);padding:16px 19px;margin:14px 0}
+.iss.p0{border-left-color:var(--red)}.iss.p1{border-left-color:var(--amber)}.iss.p2{border-left-color:#8a9a95}
+.iss h4{margin:0 0 7px;font-size:15px;display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
+.tag{font-size:10.5px;letter-spacing:.06em;padding:2px 7px;border-radius:2px;color:#fff;font-weight:600;white-space:nowrap}
+.t0{background:var(--red)}.t1{background:var(--amber)}.t2{background:#8a9a95}
+.iss .ev{background:#f6f8f7;border:1px solid var(--line);padding:10px 13px;margin:10px 0 0;font-size:12.5px;font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap;color:#31423d;overflow-x:auto}
+.iss .fix{font-size:13.5px;color:#2d4a3f;margin-top:10px;padding-top:9px;border-top:1px dashed var(--line)}
+.iss .fix b{color:var(--green)}
+ul,ol{padding-left:22px}li{margin:6px 0}
+.flow{background:#fff;border:1px solid var(--line);padding:18px;margin:18px 0;font-size:13px;overflow-x:auto}
+.flow div{padding:4px 0;border-bottom:1px dotted var(--line);display:flex;gap:10px}
+.flow div:last-child{border:0}
+.flow i{color:var(--muted);font-style:normal;flex:0 0 42px;font-family:ui-monospace,monospace;font-size:12px}
+.flow b{flex:0 0 190px;font-weight:600}
+.flow s{text-decoration:none;color:var(--red)}
+.flow em{font-style:normal;color:var(--green)}
+.note{background:#fdf8ec;border:1px solid #e8dcc0;padding:15px 19px;margin:22px 0;font-size:14px}
+.note b{color:#8a6410}
+footer{margin-top:58px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style></head><body>
+<header><div class="wrap">
+<div class="tk">U-DESIGN · END-TO-END AUDIT</div>
+<h1>优定制 · 客人侧全链路走查报告</h1>
+<p>按「进入小程序 → 浏览 → 咨询 → 咨询单流转 → 生成订单 → 支付 → 进度流转 → 取消/退订/完成 → 退款逆向」真跑一遍，每一步回到客人端核对所见。</p>
+<div class="kpi"><span>2026-09-24</span><span>真实接口实跑，非代码推演</span><span>共 21 个问题</span><span>其中 6 个客人已能看到错误信息</span><span>走查数据已还原</span></div>
+</div></header>
+<div class="wrap">
+<h2><span class="n">01 / 走查方式</span>真跑了一遍，不是看代码推的</h2>
+<p>造一张真咨询单，用真实接口把正向链路走到底，再单独拉两张订单走逆向。每一步走完，都回到客人端（<code>/api/mini/me</code>、<code>/api/mini/orders</code>、订单详情页）看客人此刻看到什么。</p>
+<div class="flow">
+<div><i>1</i><b>小程序提交定制需求</b><em>咨询单 DZ260924111 落库，自动出方案，客人建档</em></div>
+<div><i>2</i><b>门店接单</b><s>状态直接跳到「跟进中」，「已接单」被跳过</s></div>
+<div><i>3</i><b>方案与客人确认</b><s>客人端看不到「方案已确认」，仍显示「方案报价中」</s></div>
+<div><i>4</i><b>派单给供应商</b><em>自动匹配到 2 家，状态进入报价中</em></div>
+<div><i>5</i><b>供应商接单 + 报价 62000</b><em>正常</em></div>
+<div><i>6</i><b>门店选定供应商</b><em>正常，给出建议对客价 77500</em></div>
+<div><i>7</i><b>成交，生成订单 88000</b><s>客人端旅程卡只写「行程已确认」，没有任何该付款的提示，也没有指向订单的入口</s></div>
+<div><i>8</i><b>收定金 26400</b><em>徽标转「部分支付」，正常</em></div>
+<div><i>9</i><b>签署合同</b><s>合同已落库，客人端进度条一动不动，「签约」这一格不亮</s></div>
+<div><i>10</i><b>收尾款结清 88000</b><em>徽标转「已支付」，正常</em></div>
+<div><i>11</i><b>标记出行中</b><s>客人端毫无变化，「行前准备」「出行」两格永远不亮</s></div>
+<div><i>12</i><b>已回团 + 完成</b><em>徽标转「已完成」，正常</em></div>
+<div><i>13</i><b>取消未付款订单</b><em>后台校验到位：不填原因被拦</em></div>
+<div><i>14</i><b>取消已付款订单</b><em>正确拦住，提示要走退款流程</em></div>
+<div><i>15</i><b>申请退款 18000</b><s>客人端完全看不到，徽标还是「部分支付」</s></div>
+<div><i>16</i><b>退款审核通过</b><s>徽标转「已退订」，但进度条跳回第一格「下单」打勾</s></div>
+</div>
+<p style="font-size:13.5px;color:var(--muted)">走查产生的数据（1 张咨询单、3 张订单、1 个客人、若干流水）已全部清除，库计数已核对还原。</p>
+
+<h2><span class="n">02 / 结论</span>你说的那个问题确实存在，而且比预想的更严重</h2>
+<div class="lead">后台把咨询单和订单分成两套单据，这个设计是对的。问题是小程序端既没有跟着分开，也没有把两者接起来——它把咨询单当成了唯一的历史记录，订单被塞进最底部的功能入口里，而且状态还是错的。</div>
+<p>客人成交之后，在小程序上会同时存在两条关于同一段行程的记录，说的却是两回事：</p>
+<table>
+<tr><th style="width:20%">客人看的位置</th><th style="width:26%">实际显示</th><th style="width:26%">数据来自</th><th>问题</th></tr>
+<tr><td>「我的」首屏 · 旅程册</td><td>瑞士 · 行程已确认 · ¥88,000 ·〔看行程〕</td><td>咨询单 <code>consult</code></td><td>没有任何「该付款了」的信号，没有通往订单的入口</td></tr>
+<tr><td>「我的」→ 我的订单</td><td>DD0216836592 · <b style="color:var(--red)">待支付</b> · ¥88,000</td><td>订单 <code>torder</code></td><td>要点两层才找得到；状态还显示错</td></tr>
+</table>
+<p>也就是说：<b>客人在首屏看不到自己有一张待支付的订单，而真正的订单入口排在「个人资料」「常用旅客」这些设置项旁边</b>。反过来，进了订单页也看不到这单的咨询历史从哪来、经过了什么。两条线既没分开，也没打通。</p>
+<h2><span class="n">03 / A 类问题</span>客人现在就能看到错的信息（6 个）</h2>
+
+<div class="iss p0"><h4><span class="tag t0">A1</span>已签约的订单，在小程序显示「待支付」</h4>
+<p>后台订单状态里有 <code>contracted</code>（已签约）这个值，库里现在就有 3 张是这个状态。但小程序和服务端的状态中文对照表<b>都没有收录它</b>，于是走进兜底分支，显示成「待支付」。</p>
+<div class="ev">订单 DD0174928713　库里 status = "contracted"　已付 ¥14,040 / ¥46,800
+客人端徽标 →「待支付」　　同一屏下方却写着「已付 ¥14,040」，进度条「✓签约」
+（同一个页面里三处自相矛盾，演示账号点进「我的订单」第一眼看到的就是这个）</div>
+<div class="fix"><b>改法：</b>客人端不要自己维护一张状态表。服务端已经有一套按实收金额推导的口径（后台订单列表用的就是它），客人端直接用同一个推导结果，并补上 <code>contracted</code> 的中文。</div></div>
+
+<div class="iss p0"><h4><span class="tag t0">A2</span>同一张订单，后台显示「已支付」，小程序显示「部分支付」</h4>
+<p>后台列表的状态是按实收金额算出来的，小程序拿的是数据库里那个原始字段，两者会打架。</p>
+<div class="ev">订单 DD0080999146　应收 ¥104,000　已收 ¥104,000（已结清）
+库里 status = "deposit"
+后台列表 →「已支付」（按钱推导，正确）　　小程序 →「部分支付」（读原始字段，错）</div>
+<div class="fix"><b>改法：</b>同 A1，客人端与后台共用一套推导。这是同一个根因的两个表现。</div></div>
+
+<div class="iss p0"><h4><span class="tag t0">A3</span>「签约」「行前准备」「出行」三格进度，真实流程下永远不会亮</h4>
+<p>客人端把七格进度条的亮灯位置，用订单状态去那七个名字里找位置。但后台真实的订单状态只有六个值，<code>contracted</code>／<code>ready</code>／<code>traveling</code> 不是状态，而是后台用「合同签没签 + 人出没出发 + 资源确认没有」现场算出来的阶段。客人端没有用这套算法。</p>
+<div class="ev">实测第 9 步：合同已签署（contract_no 已落库）→ 客人端进度条一动不动，停在「付定金」
+实测第 11 步：标记出行中（trip_state = 出行中）→ 客人端毫无变化，仍停在「付全款」
+结果：客人在小程序上，永远看不到自己已经签约、已经出发</div>
+<div class="fix"><b>改法：</b>服务端已有现成的阶段算法（后台订单详情在用），把它的结果一起返回给客人端，客人端不要自己算。</div></div>
+
+<div class="iss p0"><h4><span class="tag t0">A4</span>已取消 / 已退订的订单，进度条跳回第一格「下单」打勾</h4>
+<p>取消和退订不在那七格里，找不到位置就退回 0，于是「下单」这一格亮着。客人看到的是「已退订」徽标配一个刚下单的进度条。</p>
+<div class="ev">实测第 16 步：退款审核通过后
+DDTEST0002　徽标「已退订」　进度条 → 第 1 格「下单」✓亮起</div>
+<div class="fix"><b>改法：</b>逆向状态不要复用正向进度条，单独一条「已于 X 月 X 日退订，退款 ¥N 已退回」的收尾说明。</div></div>
+
+<div class="iss p0"><h4><span class="tag t0">A5</span>接口把成本和毛利返回给客人了</h4>
+<p>客人侧的订单列表和订单详情，用的是后台那个带利润计算的数据包装函数。页面上没画出来，但接口响应里明明白白。客人在手机浏览器里打开开发者工具，或者任何人抓一次包，就能看到这单我们赚多少。</p>
+<div class="ev">GET /api/mini/orders?phone=139****1234　实际响应：
+{ "no":"DD0174928713", "amount":46800, "paid":14040,
+  "cost":31824, "profit":14976, "rate":32 }   ← 成本 / 毛利 / 毛利率</div>
+<div class="fix"><b>改法：</b>客人侧的订单接口单独做一层字段白名单，只出客人该看的（金额、已付、状态、行程信息），成本类字段一律不进响应。这条建议优先修，和演示不演示无关。</div></div>
+
+<div class="iss p0"><h4><span class="tag t0">A6</span>真实客人第一次登录，系统会给他伪造 3 段旅程和 1 张 4.68 万的已签约订单</h4>
+<p>演示用的自动灌数据逻辑，触发条件是「这个号名下没有咨询单」，而小程序登录页<b>不分场合，一律带上演示标记</b>。所以任何一个新手机号第一次登录，立刻被灌进冰岛、意大利、希腊三段旅程，外加一张已签约、已付定金 14,040 元的订单。</p>
+<div class="ev">库里现有两个真实手机号（昨天 14:21、14:28 各登录过一次）名下的数据：
+139****1004 → 3 张咨询单（冰岛 won / 意大利 taken / 希腊 pending）+ 订单 DD0173271036 ¥46,800
+139****4368 → 2 张咨询单 + 订单 DD0173684652 ¥46,800
+全部 source=mini_ai、销售=李晴，与演示号的数据一模一样——都是自动灌的，不是真单</div>
+<div class="fix"><b>改法：</b>演示标记只在演示入口（比如首页那个演示账号快捷登录）带上，正常手机号登录不带。这条要尽快定，否则真给客户试用时会出事。</div></div>
+<h2><span class="n">04 / B 类问题</span>咨询单与订单没分开，也没打通（4 个）</h2>
+
+<div class="iss p1"><h4><span class="tag t1">B1</span>「我的」首屏把咨询单当成了唯一的历史记录，订单没有位置</h4>
+<p>首屏结构是：档案封面 → 旅程（咨询单）→ 心愿清单 → 定制顾问 → 功能入口。订单是功能入口里的第一条小字，和「常用旅客」「发票管理」并列。<code>/api/mini/me</code> 这个接口的返回里<b>根本没有订单数据</b>。</p>
+<div class="fix"><b>改法：</b>首屏改成两条并列的历史线——「我的咨询」和「我的订单」，各给一个区块，各自显示最近几条 + 查看全部。咨询单负责成交前，订单负责成交后，客人一眼能分清自己有几件事在办。</div></div>
+
+<div class="iss p1"><h4><span class="tag t1">B2</span>成交后两条记录各说一套，客人不知道该信哪个</h4>
+<p>咨询单成交后变成 <code>已成交</code>，旅程卡显示「行程已确认」；同时生成的订单显示「待支付」。同一段瑞士行程，首屏说已确认，订单页说待支付，两处都没提到对方。</p>
+<div class="fix"><b>改法：</b>咨询单一旦成交，旅程卡就不再显示咨询单状态，改为「已生成订单 · 待支付 ¥88,000」并直接点进订单；订单详情反向给一条「本单来自 X 月 X 日的定制需求」的回溯入口。两条线各管一段，交接处互相指向。</div></div>
+
+<div class="iss p1"><h4><span class="tag t1">B3</span>后台手工建的订单，客人在「我的」页统计不到</h4>
+<p>首屏那个订单计数，是数「有几张咨询单已经转单」，不是数订单。库里 4 张后台直接建的订单（没有对应咨询单）完全不计入。</p>
+<div class="ev">stats.order = 咨询单里 order_no 不为空的条数
+库里 9 张订单中，4 张 consult_no 为空 → 这 4 张永远不进统计</div>
+<div class="fix"><b>改法：</b>订单数直接查订单表。同时订单详情里，没有咨询单的那种要能正常显示——现在这种订单点进详情，「定制进度」整块是空的。</div></div>
+
+<div class="iss p1"><h4><span class="tag t1">B4</span>咨询单在客人端看不到流转明细，订单看不到收款记录</h4>
+<p>旅程卡只有一行状态文字。后台记得很全（接单、方案确认、派单、报价、成交每一步都有日志），客人端一条都不显示。订单详情那块「定制进度」显示的是咨询单的日志，而订单自己的日志（收款、签约、退款审核）客人看不到——收了他的钱，他在小程序上找不到收款凭据。</p>
+<div class="fix"><b>改法：</b>咨询单详情页补一条时间线（后台日志过滤掉内部信息后给客人看）；订单详情把收款/退款流水单独列一块，让客人能对上自己付过的每一笔。</div></div>
+
+<h2><span class="n">05 / C 类问题</span>来源记录不下来（4 个）</h2>
+<p>你要求区分记录客人从哪个入口来的。现在做不到——<b>8 个不同的咨询入口，全部汇到同一个表单页，落库时来源硬编码成「小程序 · 需求表单」</b>。</p>
+<table>
+<tr><th style="width:30%">客人点的按钮</th><th style="width:25%">在哪</th><th style="width:22%">带过去的信息</th><th>落库来源</th></tr>
+<tr><td>咨询定制顾问</td><td>内容文章底部</td><td>目的地 + 文章 ID ✓</td><td>需求表单</td></tr>
+<tr><td>找他定制</td><td>定制师卡片</td><td>目的地 + <b style="color:var(--red)">记成了文章 ID</b></td><td>需求表单</td></tr>
+<tr><td>咨询</td><td>产品详情页</td><td><b style="color:var(--red)">只有目的地，产品 ID 丢了</b></td><td>需求表单</td></tr>
+<tr><td>开始定制</td><td>目的地页</td><td>目的地</td><td>需求表单</td></tr>
+<tr><td>说说我的想法</td><td>我的 · 定制顾问</td><td>无</td><td>需求表单</td></tr>
+<tr><td>联系我的顾问</td><td><b style="color:var(--red)">订单详情里</b></td><td>无</td><td>需求表单（新开一张单）</td></tr>
+<tr><td>提交定制需求</td><td>我的 · 空态</td><td>无</td><td>需求表单</td></tr>
+<tr><td>悬浮咨询按钮</td><td>全局</td><td>无</td><td>需求表单</td></tr>
+</table>
+
+<div class="iss p1"><h4><span class="tag t1">C1</span>产品详情页点咨询，客人看的是哪个产品没记下来</h4>
+<p>咨询单表里本来就有产品 ID 这个字段，小程序提交时不填。顾问接到单只知道客人想去瑞士，不知道他刚刚在看哪条线路、什么价位。</p>
+<div class="fix"><b>改法：</b>入口带上产品 ID 并落库，顾问接单时直接显示「客人从〈XX 产品〉发起咨询」。</div></div>
+
+<div class="iss p1"><h4><span class="tag t1">C2</span>订单详情里点「联系我的顾问」，会新开一张定制需求单</h4>
+<p>客人想问的是已有订单的事，系统给他建了一张新的定制咨询单。顾问那边凭空多出一张单，还不知道它和哪张订单有关。</p>
+<div class="fix"><b>改法：</b>订单内的联系入口不走建单，挂到这张订单上留言（订单日志里已有留言接口），顾问在订单里直接回。</div></div>
+
+<div class="iss p1"><h4><span class="tag t1">C3</span>八个入口来源不分，后台没法看转化</h4>
+<div class="fix"><b>改法：</b>把来源拆开记（内容咨询 / 产品咨询 / 目的地咨询 / 定制师咨询 / 顾问咨询 / 悬浮入口 / 主动提单），并把「从哪个内容或哪个产品来」一起落库。改完后台就能看清哪类内容真正带来咨询。</div></div>
+
+<div class="iss p1"><h4><span class="tag t1">C4</span>你列的「联系定制师咨询」这个环节，小程序端其实不存在</h4>
+<p>后台有「定制师对话建单」这条来源，但那是门店定制师在自己后台跟客人聊出来的。小程序端点「找他定制」还是跳到填表单，<b>没有真正的对话入口</b>。客人不能在小程序里直接和定制师说话。</p>
+<div class="fix"><b>改法：</b>这是一块新功能，不是修 bug。建议单独排——小程序端做一个咨询会话页，接到后台定制师那条对话线上（数据结构现成的，对话表已经在用）。</div></div>
+<h2><span class="n">06 / D 类问题</span>客人侧动作全缺，逆向流程走不通（4 个）</h2>
+<div class="lead">后台这部分做得相当扎实：收款有超额校验、取消必须填原因、已收款不许直接取消要走退款、退款走「申请 → 审核 → 出账」两段式、每一步都写流水和日志。问题是——<b>这些全是销售在后台操作，客人在小程序里一个动作都做不了</b>，操作人默认还写死是「李晴」。</div>
+<table>
+<tr><th style="width:26%">环节</th><th style="width:34%">后台</th><th>客人侧（小程序）</th></tr>
+<tr><td>支付</td><td>✓ 收款接口完备，校验到位</td><td><b style="color:var(--red)">没有支付入口</b>。订单写着「待支付」，客人点不了任何按钮</td></tr>
+<tr><td>取消订单</td><td>✓ 完备</td><td><b style="color:var(--red)">没有入口</b></td></tr>
+<tr><td>申请退款</td><td>✓ 两段式审核完备</td><td><b style="color:var(--red)">没有入口</b></td></tr>
+<tr><td>退款进度</td><td>✓ 状态、金额、审核意见都有</td><td><b style="color:var(--red)">完全不显示</b>。实测申请退款后，客人端徽标还是「部分支付」</td></tr>
+</table>
+<div class="iss p1"><h4><span class="tag t1">D1–D4</span>我的建议：客人侧只开三个动作，其余留在后台</h4>
+<ul>
+<li><b>去支付</b>——待支付/部分支付时露出按钮。演示环境做成模拟支付（确认即视为收款，走的还是后台那个收款接口，流水一样落库），不接真实支付通道。</li>
+<li><b>申请取消 / 退款</b>——客人提交申请和原因，<b>不直接改订单状态</b>，而是落成一条待处理申请，由门店在后台审。逆向流程涉及钱，不能让客人一键完成。</li>
+<li><b>看退款进度</b>——申请中、审核通过、已退回三态，配金额和时间，客人随时能查。</li>
+</ul>
+<div class="fix"><b>为什么不全开：</b>后台的校验逻辑（扣费、审核、供应商结算）是这套系统的价值所在，客人侧只做「发起」和「查看」，判断权留在门店。这也是携程飞猪的标准做法。</div></div>
+
+<h2><span class="n">07 / E 类问题</span>数据量上来以后的承载（3 个）</h2>
+<p>你问的这一条现在还看不出来——演示账号只有 3 段旅程、4 个心愿、1 张订单。但代码是<b>全量返回 + 全量渲染，没有分页、没有上限、没有筛选</b>，客人用满一年就会出问题。</p>
+<table>
+<tr><th style="width:24%">接口 / 页面</th><th style="width:30%">现在的行为</th><th>数据量上来会怎样</th></tr>
+<tr><td>我的 · 首屏</td><td>一次返回这个人<b>全部</b>咨询单 + <b>全部</b>收藏，前端全量渲染</td><td>50 张咨询单 + 200 个收藏 → 首屏要等接口吐完才出内容，滚动条长到失去意义</td></tr>
+<tr><td>我的订单</td><td>一次返回全部订单</td><td>同上，且订单结构比咨询单更重</td></tr>
+<tr><td>封面图挑选</td><td>每次请求都全表扫一遍在售产品，用字符串匹配找配图</td><td>产品上到几百条时，每次进「我的」都要跑一遍全表匹配</td></tr>
+</table>
+<div class="iss p2"><h4><span class="tag t2">E1</span>我建议的分页方案</h4>
+<ul>
+<li><b>首屏只给摘要</b>：咨询单和订单各显示最近 3 条，下面一行「查看全部 12 段旅程 ›」；心愿清单显示 6 个（两行三宫格）+「全部 24 个心愿 ›」。首屏接口只取这几条 + 各自总数，不再全量返回。</li>
+<li><b>独立列表页做分页</b>：每页 20 条，滚到底自动加载下一页，加载中/没有更多都有明确提示。</li>
+<li><b>列表页加筛选</b>：订单按「全部 / 待支付 / 进行中 / 已完成 / 已取消」分页签；咨询单按「进行中 / 已成交 / 已结束」分。这是客人找历史记录最直接的方式。</li>
+<li><b>封面图不再全表扫</b>：改成咨询单落库时就把配图记下来，或者直接用这单方案的封面。</li>
+</ul></div>
+<div class="iss p2"><h4><span class="tag t2">E2</span>收藏的产品下架后，从心愿清单里静默消失</h4>
+<p>客人收藏的产品一旦下架或停售，服务端过滤时直接丢掉，客人的收藏"凭空少了一个"，没有任何提示。</p>
+<div class="fix"><b>改法：</b>保留卡片，置灰显示「该产品已下架」，给一个移除按钮和一个「找相似」入口。</div></div>
+<div class="iss p2"><h4><span class="tag t2">E3</span>咨询单状态机里「已接单」是个孤儿状态</h4>
+<p>状态表里有「已接单」，种子数据里也有 3 张是这个状态，但真实流程里门店接单会直接跳到「跟进中」——<b>这个状态永远产生不了</b>。客人端能看到的「顾问已接单」文案，只在演示数据上出现。</p>
+<div class="fix"><b>改法：</b>二选一，我倾向前者——① 接单后先进「已接单」，顾问开始动作才转「跟进中」，客人能看到更细的进度；② 或者干脆去掉这个状态，种子数据一并改。</div></div>
+<h2><span class="n">08 / 建议的改造顺序</span>分四批，一批交付一次</h2>
+<table>
+<tr><th style="width:8%">批次</th><th style="width:30%">内容</th><th style="width:16%">覆盖问题</th><th>为什么排这个顺序</th></tr>
+<tr><td><b>第 1 批</b></td><td>状态口径统一 + 成本字段不外泄 + 演示数据不灌真实客人</td><td>A1–A6</td><td>这六条是客人<b>现在</b>就能看到的错误信息，其中成本外泄和伪造订单两条有实际风险，先灭掉</td></tr>
+<tr><td><b>第 2 批</b></td><td>「我的」首屏拆成咨询单 / 订单两条历史线，两条互相指向；补咨询单时间线与订单收款流水</td><td>B1–B4</td><td>你指出的核心问题。要等第 1 批把状态口径理清，否则拆完两条线还是显示错的状态</td></tr>
+<tr><td><b>第 3 批</b></td><td>客人侧开「去支付 / 申请取消退款 / 看退款进度」三个动作；来源按入口拆开记录</td><td>C1–C3、D1–D4</td><td>链路补完整。来源记录和入口改造在同一批做，改动集中在同一批文件</td></tr>
+<tr><td><b>第 4 批</b></td><td>首屏摘要化 + 独立列表页分页与筛选 + 下架收藏处理 + 封面图不再全表扫</td><td>E1–E3</td><td>放最后，因为前三批会动同一批页面结构，分页在结构定下来之后做才不会白改</td></tr>
+</table>
+<p style="font-size:13.5px;color:var(--muted)">第 4 批的「联系定制师对话」（C4）是新功能不是修 bug，建议单独排一次，不混在这四批里。</p>
+
+<h2><span class="n">09 / 需要你拍板的 5 件事</span></h2>
+<div class="note">
+<p><b>① 演示支付怎么做？</b>我的建议是做成模拟支付——客人点「去支付」，确认后直接视为收款成功，走的还是后台那个收款接口，流水一样落库。不接微信支付真实通道（演示环境接不了，也没必要）。如果你要给客户演示"真的扫码付款"，那是另一件事，需要单独排。</p>
+<p><b>② 取消和退款，客人能不能一键完成？</b>我的建议是<b>不能</b>——客人只提交申请，门店在后台审。理由是逆向流程涉及扣费和供应商结算，后台的校验逻辑不能绕过。如果你希望演示时能一键走完，我可以加一个后台快速通过的按钮。</p>
+<p><b>③「已接单」这个状态留不留？</b>我倾向<b>留下并补上</b>——接单后先「已接单」，顾问真正开始动作才转「跟进中」，客人能看到更细的进度。要是你觉得没必要，我就把它连同种子数据一起去掉。</p>
+<p><b>④ 首屏两条线，哪条放前面？</b>我倾向<b>订单在前，咨询在后</b>——有待付款、在履约的订单是更紧要的事。但如果你认为定制咨询是这个产品的主线、要突出"我们在给你做方案"这个感觉，那就咨询在前。这个看你对产品调性的判断。</p>
+<p><b>⑤ 真实客人登录还要不要灌演示数据？</b>我的建议是<b>只保留演示账号那一个口子</b>，正常手机号登录不灌。这条如果你同意，我在第 1 批里一起改掉。</p>
+</div>
+
+<h2><span class="n">10 / 一件要跟你说明的事</span></h2>
+<div class="note">
+<p><b>走查过程中我操作失误，短暂丢过一批演示数据，已经恢复。</b></p>
+<p>为了走完整流程我先备份了数据库，但备份时没有把数据库的日志文件一起落盘，所以那份备份是个较早的快照。走查结束我用它还原，结果连带回退掉了演示账号名下的 3 张咨询单、1 张订单，以及今早改的 3 条日志文案。</p>
+<p>已经全部补回来了：演示账号重新登录触发了数据重建（3 段旅程 / 4 个心愿 / 1 张订单，和之前一致），日志文案重新改了一遍。<b>真实客人数据、产品库、内容、首页配置、资源库、模板、地接社档案这些一条没动</b>，我逐表核对过。</p>
+<p>教训我记下来了：这个库开了 WAL 模式，备份必须先让日志落盘再复制，不能直接 cp 数据库文件。</p>
+</div>
+
+<footer>
+优定制全链路走查 · 2026-09-24 · 走查方式：真实接口实跑 + 客人端逐步核对<br>
+共 21 个问题：A 类 6（客人可见错误）· B 类 4（咨询单与订单未分离）· C 类 4（来源记录）· D 类 4（客人侧动作缺失）· E 类 3（数据量承载）
+</footer>
+</div></body></html>
